@@ -34,11 +34,11 @@ function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-white text-foreground">
-      {/* Subtle light ambient */}
+    <div className="relative min-h-screen w-full overflow-hidden bg-background text-foreground">
+      {/* Subtle ambient */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-60 dark:opacity-30"
         style={{
           background:
             "radial-gradient(1200px 500px at 20% -10%, oklch(0.95 0.02 250 / 0.6), transparent 60%), radial-gradient(900px 400px at 90% 110%, oklch(0.96 0.01 250 / 0.7), transparent 60%)",
@@ -46,10 +46,10 @@ function LoginPage() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.04] text-foreground"
         style={{
           backgroundImage:
-            "linear-gradient(to right, oklch(0.2 0.03 250) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.2 0.03 250) 1px, transparent 1px)",
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
           backgroundSize: "56px 56px",
         }}
       />
