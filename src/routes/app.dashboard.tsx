@@ -35,12 +35,15 @@ import {
   YAxis,
 } from "recharts";
 import {
-  KPI,
-  crimeByType,
-  crimeTrend,
+  KPI as MOCK_KPI,
   districts,
-  recentActivities,
 } from "@/lib/mock-data";
+import {
+  useKpis,
+  useCrimeTrend,
+  useCrimeByType,
+  useRecentActivity,
+} from "@/hooks/use-dashboard";
 import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/app/dashboard")({
@@ -50,6 +53,10 @@ export const Route = createFileRoute("/app/dashboard")({
 const CHART_COLORS = ["#1f2a55", "#2aa7b8", "#7c8ba8", "#e08c3b", "#3aa872"];
 
 function DashboardPage() {
+  const { data: KPI = MOCK_KPI } = useKpis();
+  const { data: crimeTrend = [] } = useCrimeTrend(12);
+  const { data: crimeByType = [] } = useCrimeByType();
+  const { data: recentActivities = [] } = useRecentActivity(6);
   return (
     <div className="mx-auto max-w-[1600px] space-y-6">
       <PageHeader
