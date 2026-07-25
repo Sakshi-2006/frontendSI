@@ -34,11 +34,11 @@ function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-white text-foreground">
-      {/* Subtle light ambient */}
+    <div className="relative min-h-screen w-full overflow-hidden bg-background text-foreground">
+      {/* Subtle ambient */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-60 dark:opacity-30"
         style={{
           background:
             "radial-gradient(1200px 500px at 20% -10%, oklch(0.95 0.02 250 / 0.6), transparent 60%), radial-gradient(900px 400px at 90% 110%, oklch(0.96 0.01 250 / 0.7), transparent 60%)",
@@ -46,10 +46,10 @@ function LoginPage() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.04] text-foreground"
         style={{
           backgroundImage:
-            "linear-gradient(to right, oklch(0.2 0.03 250) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.2 0.03 250) 1px, transparent 1px)",
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
           backgroundSize: "56px 56px",
         }}
       />
@@ -70,7 +70,7 @@ function LoginPage() {
           </div>
           <Link
             to="/public"
-            className="hidden items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-xs font-medium text-foreground shadow-sm transition hover:bg-muted md:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-foreground shadow-sm transition hover:bg-muted md:inline-flex"
           >
             <Users className="h-3.5 w-3.5" /> Public Portal
             <ArrowRight className="h-3 w-3" />
@@ -83,7 +83,7 @@ function LoginPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mx-auto w-full max-w-md rounded-3xl border border-border bg-white p-8 shadow-xl shadow-slate-200/60 md:p-10"
+            className="mx-auto w-full max-w-md rounded-3xl border border-border bg-card p-8 shadow-xl shadow-slate-200/60 dark:shadow-black/40 md:p-10"
           >
             <div className="mb-1 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary">
               <Lock className="h-3 w-3" /> Karnataka Police only
@@ -106,7 +106,7 @@ function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="officer@ksp.gov.in"
-                    className="h-11 pl-9 bg-white"
+                    className="h-11 pl-9 bg-background"
                   />
                 </div>
               </div>
@@ -127,7 +127,7 @@ function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="h-11 pl-9 bg-white"
+                    className="h-11 pl-9 bg-background"
                   />
                 </div>
               </div>
@@ -165,7 +165,7 @@ function LoginPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-3xl border border-border bg-muted/40 p-8 shadow-sm md:p-10"
+            className="rounded-3xl border border-border bg-muted/40 p-8 shadow-sm dark:bg-card/40 md:p-10"
           >
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary">
               <Users className="h-3 w-3" /> For citizens · No login required
@@ -191,7 +191,7 @@ function LoginPage() {
               ].map((f) => {
                 const Icon = f.icon;
                 return (
-                  <li key={f.label} className="flex items-start gap-2 rounded-lg border border-border bg-white p-3 text-xs text-foreground shadow-sm">
+                  <li key={f.label} className="flex items-start gap-2 rounded-lg border border-border bg-card p-3 text-xs text-foreground shadow-sm">
                     <Icon className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     <span>{f.label}</span>
                   </li>
