@@ -16,22 +16,31 @@ export const Route = createFileRoute("/")({
 function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("commander@ksp.gov.in");
-  const [password, setPassword] = useState("demo-access");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!/@ksp\.gov\.in$/i.test(email)) {
       toast.error("Access restricted: use your @ksp.gov.in Karnataka Police email.");
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      login(email, password);
+    try {
+      await login(email, password);
       toast.success("Authenticated. Welcome, Officer.");
       navigate({ to: "/app/dashboard" });
-    }, 600);
+    } catch (err: any) {
+      const msg =
+        err?.response?.data?.message ||
+        err?.message ||
+        "Sign-in failed. Please check your credentials.";
+      toast.error(msg);
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-background text-foreground">
