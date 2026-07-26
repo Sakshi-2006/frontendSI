@@ -3,8 +3,9 @@ import { PageHeader } from "@/components/page-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { reportsList } from "@/lib/mock-data";
-import { Download, FileText, FilePlus2 } from "lucide-react";
+import { useReports } from "@/hooks/use-app-data";
+import { reportService } from "@/services";
+import { Download, FileText, FilePlus2, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/app/reports")({
@@ -12,6 +13,8 @@ export const Route = createFileRoute("/app/reports")({
 });
 
 function ReportsPage() {
+  const { data, isLoading } = useReports();
+  const reportsList = (data ?? []) as Array<{ id: string; title: string; type: string; size: string; date: string }>;
   return (
     <div className="mx-auto max-w-[1600px] space-y-6">
       <PageHeader
