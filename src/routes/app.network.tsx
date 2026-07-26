@@ -118,7 +118,7 @@ function NetworkPage() {
                 <Input placeholder="Search…" value={query} onChange={(e) => setQuery(e.target.value)} className="pl-9" />
               </div>
               <ul className="mt-3 max-h-64 space-y-1 overflow-auto">
-                {filteredNodes.map((n) => (
+                {filteredNodes.map((n: NetNode) => (
                   <li key={n.id}>
                     <button onClick={() => setSelected(n.id)}
                       className={`w-full rounded-md px-2.5 py-1.5 text-left text-sm hover:bg-muted ${selected === n.id ? "bg-muted" : ""}`}>
