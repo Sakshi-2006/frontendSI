@@ -20,7 +20,13 @@ const KIND_COLORS: Record<string, string> = {
   associate: "#3aa872",
 };
 
+type NetNode = { id: string; label: string; kind: keyof typeof KIND_COLORS };
+type NetEdge = [string, string];
+
 function NetworkPage() {
+  const net = (useNetwork().data ?? { nodes: [], edges: [] }) as { nodes: NetNode[]; edges: NetEdge[] };
+  const networkNodes = net.nodes;
+  const networkEdges = net.edges;
   const [query, setQuery] = useState("");
   const [zoom, setZoom] = useState(1);
   const [selected, setSelected] = useState<string | null>(null);
