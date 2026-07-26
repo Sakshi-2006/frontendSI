@@ -83,8 +83,8 @@ function ResourcesPage() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">Dismiss</Button>
-                  <Button size="sm">Approve</Button>
+                  <Button variant="outline" size="sm" onClick={() => decide(r.id, "dismissed")}>Dismiss</Button>
+                  <Button size="sm" onClick={() => decide(r.id, "approved")}>Approve</Button>
                 </div>
               </CardContent>
             </Card>
