@@ -9,6 +9,8 @@ export const Route = createFileRoute("/public/trends")({
 });
 
 function TrendsPage() {
+  const publicLocalityTrends = (usePublicLocalityTrends().data ?? []) as Array<{ week: string; theft: number; harassment: number; traffic: number }>;
+  const publicLocalitySafety = (usePublicLocalitySafety().data ?? []) as Array<{ locality: string; score: number; trend: "up"|"down"|"flat" }>;
   return (
     <div className="space-y-6">
       <div>
