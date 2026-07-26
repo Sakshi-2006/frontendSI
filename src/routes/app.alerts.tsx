@@ -3,8 +3,8 @@ import { PageHeader } from "@/components/page-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { alerts } from "@/lib/mock-data";
-import { AlertTriangle, ShieldAlert, Activity, MapPin } from "lucide-react";
+import { useAlerts, useDispatchAlert } from "@/hooks/use-app-data";
+import { AlertTriangle, ShieldAlert, Activity, MapPin, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Tabs, TabsList, TabsTrigger, TabsContent,
