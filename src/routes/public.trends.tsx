@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { publicLocalityTrends, publicLocalitySafety } from "@/lib/mock-data";
+import { usePublicLocalityTrends, usePublicLocalitySafety } from "@/hooks/use-app-data";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from "recharts";
 import { TrendingDown, TrendingUp, Minus } from "lucide-react";
 
