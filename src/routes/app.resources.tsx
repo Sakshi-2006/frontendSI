@@ -14,7 +14,23 @@ export const Route = createFileRoute("/app/resources")({
   component: ResourcesPage,
 });
 
+type Rec = { id: number | string; location: string; reason: string; deploy: { officers: number; vehicles: number }; priority: "critical" | "high" | "medium" };
+
 function ResourcesPage() {
+  const qc = useQueryClient();
+  const resources = (useResourceSummary().data ?? { officers: { available: 0, deployed: 0, total: 0 }, vehicles: { available: 0, deployed: 0, total: 0 }, stations: 0 }) as {
+    officers: { available: number; deployed: number; total: number };
+    vehicles: { available: number; deployed: number; total: number };
+    stations: number;
+  };
+  const recommendations = (useRecommendations().data ?? []) as Rec[];
+  const districts = (useDistricts().data ?? []) as Array<{ id: string; name: string; risk: number }>;
+
+  async function decide(id: string | number, decision: "approved" | "dismissed") {
+    try { await resourceService.decide(String(id), decision); } catch {}
+    qc.invalidateQueries({ queryKey: ["resources", "recs"] });
+  }
+
   return (
     <div className="mx-auto max-w-[1600px] space-y-6">
       <PageHeader title="Resource Allocation" subtitle="AI-recommended deployment of officers and vehicles across districts." />
