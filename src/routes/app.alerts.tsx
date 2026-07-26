@@ -21,7 +21,20 @@ const sevMap = {
   low: { class: "bg-muted text-muted-foreground", icon: Activity },
 } as const;
 
+type Alert = {
+  id: string;
+  title: string;
+  district: string;
+  time: string;
+  severity: keyof typeof sevMap;
+  status: string;
+};
+
 function AlertsPage() {
+  const { data, isLoading } = useAlerts();
+  const alerts = (data ?? []) as Alert[];
+  const dispatch = useDispatchAlert();
+
   return (
     <div className="mx-auto max-w-[1600px] space-y-6">
       <PageHeader
@@ -30,32 +43,40 @@ function AlertsPage() {
         actions={<Button size="sm" variant="outline">Mark all reviewed</Button>}
       />
 
-      <Tabs defaultValue="all">
-        <TabsList>
-          <TabsTrigger value="all">All ({alerts.length})</TabsTrigger>
-          <TabsTrigger value="active">Active</TabsTrigger>
-          <TabsTrigger value="anomaly">Anomaly</TabsTrigger>
-          <TabsTrigger value="resolved">Resolved</TabsTrigger>
-        </TabsList>
+      {isLoading && !alerts.length ? (
+        <div className="flex items-center justify-center py-16 text-muted-foreground">
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Loading alerts…
+        </div>
+      ) : alerts.length === 0 ? (
+        <Card><CardContent className="p-10 text-center text-sm text-muted-foreground">No alerts right now.</CardContent></Card>
+      ) : (
+        <Tabs defaultValue="all">
+          <TabsList>
+            <TabsTrigger value="all">All ({alerts.length})</TabsTrigger>
+            <TabsTrigger value="active">Active</TabsTrigger>
+            <TabsTrigger value="anomaly">Anomaly</TabsTrigger>
+            <TabsTrigger value="resolved">Resolved</TabsTrigger>
+          </TabsList>
 
-        <TabsContent value="all" className="mt-4 space-y-3">
-          {alerts.map((a) => <AlertRow key={a.id} a={a} />)}
-        </TabsContent>
-        <TabsContent value="active" className="mt-4 space-y-3">
-          {alerts.filter((a) => a.status === "active").map((a) => <AlertRow key={a.id} a={a} />)}
-        </TabsContent>
-        <TabsContent value="anomaly" className="mt-4 space-y-3">
-          {alerts.filter((a) => a.title.toLowerCase().includes("spike") || a.title.toLowerCase().includes("anomaly")).map((a) => <AlertRow key={a.id} a={a} />)}
-        </TabsContent>
-        <TabsContent value="resolved" className="mt-4 space-y-3">
-          {alerts.filter((a) => a.status === "resolved").map((a) => <AlertRow key={a.id} a={a} />)}
-        </TabsContent>
-      </Tabs>
+          <TabsContent value="all" className="mt-4 space-y-3">
+            {alerts.map((a) => <AlertRow key={a.id} a={a} onDispatch={() => dispatch.mutate(a.id)} />)}
+          </TabsContent>
+          <TabsContent value="active" className="mt-4 space-y-3">
+            {alerts.filter((a) => a.status === "active").map((a) => <AlertRow key={a.id} a={a} onDispatch={() => dispatch.mutate(a.id)} />)}
+          </TabsContent>
+          <TabsContent value="anomaly" className="mt-4 space-y-3">
+            {alerts.filter((a) => a.title.toLowerCase().includes("spike") || a.title.toLowerCase().includes("anomaly")).map((a) => <AlertRow key={a.id} a={a} onDispatch={() => dispatch.mutate(a.id)} />)}
+          </TabsContent>
+          <TabsContent value="resolved" className="mt-4 space-y-3">
+            {alerts.filter((a) => a.status === "resolved").map((a) => <AlertRow key={a.id} a={a} onDispatch={() => dispatch.mutate(a.id)} />)}
+          </TabsContent>
+        </Tabs>
+      )}
     </div>
   );
 }
 
-function AlertRow({ a }: { a: typeof alerts[number] }) {
+function AlertRow({ a, onDispatch }: { a: Alert; onDispatch: () => void }) {
   const s = sevMap[a.severity];
   const Icon = s.icon;
   return (
