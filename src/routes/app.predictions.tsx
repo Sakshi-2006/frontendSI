@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { predictions, explainability, forecast } from "@/lib/mock-data";
+import { usePredictionZones, useExplainability, usePredictionForecast } from "@/hooks/use-app-data";
 import { Brain, TrendingUp, TrendingDown, Minus, Sparkles } from "lucide-react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { motion } from "framer-motion";
@@ -15,6 +15,10 @@ export const Route = createFileRoute("/app/predictions")({
 const tt = { backgroundColor: "var(--popover)", border: "1px solid var(--border)", borderRadius: 10, fontSize: 12 };
 
 function PredictionsPage() {
+  const predictions = (usePredictionZones().data ?? []) as Array<{ zone: string; risk: number; window: string; trend: "up"|"down"|"flat"; confidence: number; category?: string }>;
+  const forecast = (usePredictionForecast().data ?? []) as Array<{ day: string; predicted: number; actual: number | null }>;
+  const explainability = (useExplainability().data ?? []) as Array<{ factor: string; weight: number }>;
+
   return (
     <div className="mx-auto max-w-[1600px] space-y-6">
       <PageHeader
