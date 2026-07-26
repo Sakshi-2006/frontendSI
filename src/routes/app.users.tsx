@@ -22,6 +22,8 @@ const statusMap = {
 } as const;
 
 function UsersPage() {
+  const { data, isLoading } = useUsers();
+  const users = (data ?? []) as Array<{ id: string | number; name: string; email: string; role: string; district: string; status: string }>;
   return (
     <div className="mx-auto max-w-[1600px] space-y-6">
       <PageHeader
