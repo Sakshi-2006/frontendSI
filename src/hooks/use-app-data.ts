@@ -131,7 +131,7 @@ export function useExplainability() {
   return useQuery({
     queryKey: ["predictions", "explain"],
     queryFn: withFallback(
-      async () => (await analyticsService.predictions())?.factors ?? MOCK_EXPLAIN,
+      async () => ((await analyticsService.predictions()) as any)?.factors ?? MOCK_EXPLAIN,
       MOCK_EXPLAIN as any[],
     ),
     staleTime: STALE,
