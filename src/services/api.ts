@@ -48,7 +48,10 @@ async function tryRefresh(): Promise<string | null> {
   const refreshToken = tokenStore.getRefresh();
   if (!refreshToken) return null;
   try {
-    const { data } = await axios.post(`${BASE_URL}/api/v1/auth/login`, { refreshToken });
+  const { data } = await axios.post(
+  `${BASE_URL}/api/v1/auth/refresh`,
+  { refreshToken }
+);
     const payload = data?.data ?? data;
     if (payload?.accessToken && payload?.refreshToken) {
       tokenStore.setTokens(payload.accessToken, payload.refreshToken);
