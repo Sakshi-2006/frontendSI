@@ -41,7 +41,7 @@ function TrendsPage() {
       <Card>
         <CardHeader><CardTitle>By locality</CardTitle></CardHeader>
         <CardContent className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          {publicLocalitySafety.map((l) => {
+          {publicLocalitySafety.map((l: any) => {
             const Trend = l.trend === "up" ? TrendingUp : l.trend === "down" ? TrendingDown : Minus;
             const color = l.trend === "up" ? "text-success" : l.trend === "down" ? "text-destructive" : "text-muted-foreground";
             return (
