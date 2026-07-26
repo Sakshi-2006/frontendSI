@@ -2,7 +2,7 @@ import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from "
 
 const BASE_URL =
   (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_API_URL) ||
-  "http://localhost:5000/api/v1";
+  "https://sentineliq-uvt6.onrender.com";
 
 const ACCESS_KEY = "sentineliq_access_token";
 const REFRESH_KEY = "sentineliq_refresh_token";
@@ -48,7 +48,7 @@ async function tryRefresh(): Promise<string | null> {
   const refreshToken = tokenStore.getRefresh();
   if (!refreshToken) return null;
   try {
-    const { data } = await axios.post(`${BASE_URL}/auth/refresh`, { refreshToken });
+    const { data } = await axios.post(`${BASE_URL}/api/v1/auth/login`, { refreshToken });
     const payload = data?.data ?? data;
     if (payload?.accessToken && payload?.refreshToken) {
       tokenStore.setTokens(payload.accessToken, payload.refreshToken);

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "";
+const BASE_URL = "https://sentineliq-uvt6.onrender.com/api/v1";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {

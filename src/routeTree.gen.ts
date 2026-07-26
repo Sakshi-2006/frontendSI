@@ -9,58 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VerifyOtpRouteImport } from './routes/verify-otp'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as PublicRouteImport } from './routes/public'
-import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
-import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PublicIndexRouteImport } from './routes/public.index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as PublicRouteImport } from './routes/public'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as VerifyOtpRouteImport } from './routes/verify-otp'
 import { Route as AppIndexRouteImport } from './routes/app.index'
-import { Route as PublicTrendsRouteImport } from './routes/public.trends'
-import { Route as PublicSafetyRouteImport } from './routes/public.safety'
-import { Route as PublicReportRouteImport } from './routes/public.report'
-import { Route as PublicHeatmapRouteImport } from './routes/public.heatmap'
-import { Route as PublicEmergencyRouteImport } from './routes/public.emergency'
-import { Route as PublicAlertsRouteImport } from './routes/public.alerts'
-import { Route as AppUsersRouteImport } from './routes/app.users'
-import { Route as AppSettingsRouteImport } from './routes/app.settings'
-import { Route as AppResourcesRouteImport } from './routes/app.resources'
-import { Route as AppReportsRouteImport } from './routes/app.reports'
-import { Route as AppPredictionsRouteImport } from './routes/app.predictions'
-import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
-import { Route as AppNetworkRouteImport } from './routes/app.network'
-import { Route as AppMapRouteImport } from './routes/app.map'
-import { Route as AppDistrictsRouteImport } from './routes/app.districts'
-import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
-import { Route as AppAssistantRouteImport } from './routes/app.assistant'
-import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 import { Route as AppAlertsRouteImport } from './routes/app.alerts'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
+import { Route as AppAssistantRouteImport } from './routes/app.assistant'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppDistrictsRouteImport } from './routes/app.districts'
+import { Route as AppMapRouteImport } from './routes/app.map'
+import { Route as AppNetworkRouteImport } from './routes/app.network'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppPredictionsRouteImport } from './routes/app.predictions'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppResourcesRouteImport } from './routes/app.resources'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppUsersRouteImport } from './routes/app.users'
+import { Route as PublicIndexRouteImport } from './routes/public.index'
+import { Route as PublicAlertsRouteImport } from './routes/public.alerts'
+import { Route as PublicEmergencyRouteImport } from './routes/public.emergency'
+import { Route as PublicHeatmapRouteImport } from './routes/public.heatmap'
+import { Route as PublicReportRouteImport } from './routes/public.report'
+import { Route as PublicSafetyRouteImport } from './routes/public.safety'
+import { Route as PublicTrendsRouteImport } from './routes/public.trends'
 
-const VerifyOtpRoute = VerifyOtpRouteImport.update({
-  id: '/verify-otp',
-  path: '/verify-otp',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PublicRoute = PublicRouteImport.update({
-  id: '/public',
-  path: '/public',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppRoute = AppRouteImport.update({
@@ -68,104 +48,39 @@ const AppRoute = AppRouteImport.update({
   path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PublicIndexRoute = PublicIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => PublicRoute,
+const PublicRoute = PublicRouteImport.update({
+  id: '/public',
+  path: '/public',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyOtpRoute = VerifyOtpRouteImport.update({
+  id: '/verify-otp',
+  path: '/verify-otp',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
-const PublicTrendsRoute = PublicTrendsRouteImport.update({
-  id: '/trends',
-  path: '/trends',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicSafetyRoute = PublicSafetyRouteImport.update({
-  id: '/safety',
-  path: '/safety',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicReportRoute = PublicReportRouteImport.update({
-  id: '/report',
-  path: '/report',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicHeatmapRoute = PublicHeatmapRouteImport.update({
-  id: '/heatmap',
-  path: '/heatmap',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicEmergencyRoute = PublicEmergencyRouteImport.update({
-  id: '/emergency',
-  path: '/emergency',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicAlertsRoute = PublicAlertsRouteImport.update({
+const AppAlertsRoute = AppAlertsRouteImport.update({
   id: '/alerts',
   path: '/alerts',
-  getParentRoute: () => PublicRoute,
-} as any)
-const AppUsersRoute = AppUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppSettingsRoute = AppSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppResourcesRoute = AppResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppReportsRoute = AppReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppPredictionsRoute = AppPredictionsRouteImport.update({
-  id: '/predictions',
-  path: '/predictions',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppNotificationsRoute = AppNotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppNetworkRoute = AppNetworkRouteImport.update({
-  id: '/network',
-  path: '/network',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppMapRoute = AppMapRouteImport.update({
-  id: '/map',
-  path: '/map',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppDistrictsRoute = AppDistrictsRouteImport.update({
-  id: '/districts',
-  path: '/districts',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppDashboardRoute = AppDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppAssistantRoute = AppAssistantRouteImport.update({
-  id: '/assistant',
-  path: '/assistant',
   getParentRoute: () => AppRoute,
 } as any)
 const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
@@ -173,10 +88,95 @@ const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
-const AppAlertsRoute = AppAlertsRouteImport.update({
+const AppAssistantRoute = AppAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDistrictsRoute = AppDistrictsRouteImport.update({
+  id: '/districts',
+  path: '/districts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMapRoute = AppMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNetworkRoute = AppNetworkRouteImport.update({
+  id: '/network',
+  path: '/network',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPredictionsRoute = AppPredictionsRouteImport.update({
+  id: '/predictions',
+  path: '/predictions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResourcesRoute = AppResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUsersRoute = AppUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AppRoute,
+} as any)
+const PublicIndexRoute = PublicIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicAlertsRoute = PublicAlertsRouteImport.update({
   id: '/alerts',
   path: '/alerts',
-  getParentRoute: () => AppRoute,
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicEmergencyRoute = PublicEmergencyRouteImport.update({
+  id: '/emergency',
+  path: '/emergency',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicHeatmapRoute = PublicHeatmapRouteImport.update({
+  id: '/heatmap',
+  path: '/heatmap',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicReportRoute = PublicReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicSafetyRoute = PublicSafetyRouteImport.update({
+  id: '/safety',
+  path: '/safety',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTrendsRoute = PublicTrendsRouteImport.update({
+  id: '/trends',
+  path: '/trends',
+  getParentRoute: () => PublicRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -371,39 +371,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/verify-otp': {
-      id: '/verify-otp'
-      path: '/verify-otp'
-      fullPath: '/verify-otp'
-      preLoaderRoute: typeof VerifyOtpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/public': {
-      id: '/public'
-      path: '/public'
-      fullPath: '/public'
-      preLoaderRoute: typeof PublicRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/forgot-password': {
-      id: '/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof ForgotPasswordRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app': {
@@ -413,19 +385,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/public/': {
-      id: '/public/'
-      path: '/'
-      fullPath: '/public/'
-      preLoaderRoute: typeof PublicIndexRouteImport
-      parentRoute: typeof PublicRoute
+    '/public': {
+      id: '/public'
+      path: '/public'
+      fullPath: '/public'
+      preLoaderRoute: typeof PublicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify-otp': {
+      id: '/verify-otp'
+      path: '/verify-otp'
+      fullPath: '/verify-otp'
+      preLoaderRoute: typeof VerifyOtpRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/app/': {
       id: '/app/'
@@ -434,123 +427,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
-    '/public/trends': {
-      id: '/public/trends'
-      path: '/trends'
-      fullPath: '/public/trends'
-      preLoaderRoute: typeof PublicTrendsRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/public/safety': {
-      id: '/public/safety'
-      path: '/safety'
-      fullPath: '/public/safety'
-      preLoaderRoute: typeof PublicSafetyRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/public/report': {
-      id: '/public/report'
-      path: '/report'
-      fullPath: '/public/report'
-      preLoaderRoute: typeof PublicReportRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/public/heatmap': {
-      id: '/public/heatmap'
-      path: '/heatmap'
-      fullPath: '/public/heatmap'
-      preLoaderRoute: typeof PublicHeatmapRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/public/emergency': {
-      id: '/public/emergency'
-      path: '/emergency'
-      fullPath: '/public/emergency'
-      preLoaderRoute: typeof PublicEmergencyRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/public/alerts': {
-      id: '/public/alerts'
+    '/app/alerts': {
+      id: '/app/alerts'
       path: '/alerts'
-      fullPath: '/public/alerts'
-      preLoaderRoute: typeof PublicAlertsRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/app/users': {
-      id: '/app/users'
-      path: '/users'
-      fullPath: '/app/users'
-      preLoaderRoute: typeof AppUsersRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/settings': {
-      id: '/app/settings'
-      path: '/settings'
-      fullPath: '/app/settings'
-      preLoaderRoute: typeof AppSettingsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/resources': {
-      id: '/app/resources'
-      path: '/resources'
-      fullPath: '/app/resources'
-      preLoaderRoute: typeof AppResourcesRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/reports': {
-      id: '/app/reports'
-      path: '/reports'
-      fullPath: '/app/reports'
-      preLoaderRoute: typeof AppReportsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/predictions': {
-      id: '/app/predictions'
-      path: '/predictions'
-      fullPath: '/app/predictions'
-      preLoaderRoute: typeof AppPredictionsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/notifications': {
-      id: '/app/notifications'
-      path: '/notifications'
-      fullPath: '/app/notifications'
-      preLoaderRoute: typeof AppNotificationsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/network': {
-      id: '/app/network'
-      path: '/network'
-      fullPath: '/app/network'
-      preLoaderRoute: typeof AppNetworkRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/map': {
-      id: '/app/map'
-      path: '/map'
-      fullPath: '/app/map'
-      preLoaderRoute: typeof AppMapRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/districts': {
-      id: '/app/districts'
-      path: '/districts'
-      fullPath: '/app/districts'
-      preLoaderRoute: typeof AppDistrictsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/dashboard': {
-      id: '/app/dashboard'
-      path: '/dashboard'
-      fullPath: '/app/dashboard'
-      preLoaderRoute: typeof AppDashboardRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/assistant': {
-      id: '/app/assistant'
-      path: '/assistant'
-      fullPath: '/app/assistant'
-      preLoaderRoute: typeof AppAssistantRouteImport
+      fullPath: '/app/alerts'
+      preLoaderRoute: typeof AppAlertsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/analytics': {
@@ -560,12 +441,131 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
-    '/app/alerts': {
-      id: '/app/alerts'
-      path: '/alerts'
-      fullPath: '/app/alerts'
-      preLoaderRoute: typeof AppAlertsRouteImport
+    '/app/assistant': {
+      id: '/app/assistant'
+      path: '/assistant'
+      fullPath: '/app/assistant'
+      preLoaderRoute: typeof AppAssistantRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/districts': {
+      id: '/app/districts'
+      path: '/districts'
+      fullPath: '/app/districts'
+      preLoaderRoute: typeof AppDistrictsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/map': {
+      id: '/app/map'
+      path: '/map'
+      fullPath: '/app/map'
+      preLoaderRoute: typeof AppMapRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/network': {
+      id: '/app/network'
+      path: '/network'
+      fullPath: '/app/network'
+      preLoaderRoute: typeof AppNetworkRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/predictions': {
+      id: '/app/predictions'
+      path: '/predictions'
+      fullPath: '/app/predictions'
+      preLoaderRoute: typeof AppPredictionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/resources': {
+      id: '/app/resources'
+      path: '/resources'
+      fullPath: '/app/resources'
+      preLoaderRoute: typeof AppResourcesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/users': {
+      id: '/app/users'
+      path: '/users'
+      fullPath: '/app/users'
+      preLoaderRoute: typeof AppUsersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/public/': {
+      id: '/public/'
+      path: '/'
+      fullPath: '/public/'
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/public/alerts': {
+      id: '/public/alerts'
+      path: '/alerts'
+      fullPath: '/public/alerts'
+      preLoaderRoute: typeof PublicAlertsRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/public/emergency': {
+      id: '/public/emergency'
+      path: '/emergency'
+      fullPath: '/public/emergency'
+      preLoaderRoute: typeof PublicEmergencyRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/public/heatmap': {
+      id: '/public/heatmap'
+      path: '/heatmap'
+      fullPath: '/public/heatmap'
+      preLoaderRoute: typeof PublicHeatmapRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/public/report': {
+      id: '/public/report'
+      path: '/report'
+      fullPath: '/public/report'
+      preLoaderRoute: typeof PublicReportRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/public/safety': {
+      id: '/public/safety'
+      path: '/safety'
+      fullPath: '/public/safety'
+      preLoaderRoute: typeof PublicSafetyRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/public/trends': {
+      id: '/public/trends'
+      path: '/trends'
+      fullPath: '/public/trends'
+      preLoaderRoute: typeof PublicTrendsRouteImport
+      parentRoute: typeof PublicRoute
     }
   }
 }
@@ -641,3 +641,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
