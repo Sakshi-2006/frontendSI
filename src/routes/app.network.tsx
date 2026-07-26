@@ -147,7 +147,7 @@ function NetworkPage() {
             <Card>
               <CardHeader><CardTitle className="text-sm">Selected node</CardTitle></CardHeader>
               <CardContent className="text-sm space-y-2">
-                <div className="font-semibold">{networkNodes.find((n) => n.id === selected)?.label}</div>
+                <div className="font-semibold">{networkNodes.find((n: NetNode) => n.id === selected)?.label}</div>
                 <div className="text-xs text-muted-foreground">
                   {highlighted.size - 1} direct connections
                 </div>
