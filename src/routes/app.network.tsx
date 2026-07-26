@@ -36,24 +36,24 @@ function NetworkPage() {
     const R = 220;
     const cx = 400, cy = 300;
     const map = new Map<string, { x: number; y: number }>();
-    networkNodes.forEach((n, i) => {
-      const a = (i / networkNodes.length) * Math.PI * 2 - Math.PI / 2;
+    networkNodes.forEach((n: NetNode, i: number) => {
+      const a = (i / Math.max(networkNodes.length, 1)) * Math.PI * 2 - Math.PI / 2;
       map.set(n.id, { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) });
     });
     return map;
-  }, []);
+  }, [networkNodes]);
 
   const highlighted = useMemo(() => {
     if (!selected) return new Set<string>();
     const set = new Set<string>([selected]);
-    networkEdges.forEach(([a, b]) => {
+    networkEdges.forEach(([a, b]: NetEdge) => {
       if (a === selected) set.add(b);
       if (b === selected) set.add(a);
     });
     return set;
-  }, [selected]);
+  }, [selected, networkEdges]);
 
-  const filteredNodes = networkNodes.filter((n) =>
+  const filteredNodes = networkNodes.filter((n: NetNode) =>
     n.label.toLowerCase().includes(query.toLowerCase())
   );
 
