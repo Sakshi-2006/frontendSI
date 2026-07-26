@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent } from "@/components/ui/card";
-import { emergencyContacts } from "@/lib/mock-data";
+import { useEmergencyContacts } from "@/hooks/use-app-data";
 import { Phone } from "lucide-react";
 
 export const Route = createFileRoute("/public/emergency")({
@@ -8,6 +8,7 @@ export const Route = createFileRoute("/public/emergency")({
 });
 
 function EmergencyPage() {
+  const emergencyContacts = (useEmergencyContacts().data ?? []) as Array<{ name: string; desc: string; number: string }>;
   return (
     <div className="space-y-6">
       <div>

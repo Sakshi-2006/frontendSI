@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { publicLocalityTrends, publicLocalitySafety } from "@/lib/mock-data";
+import { usePublicLocalityTrends, usePublicLocalitySafety } from "@/hooks/use-app-data";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from "recharts";
 import { TrendingDown, TrendingUp, Minus } from "lucide-react";
 
@@ -9,6 +9,8 @@ export const Route = createFileRoute("/public/trends")({
 });
 
 function TrendsPage() {
+  const publicLocalityTrends = (usePublicLocalityTrends().data ?? []) as Array<{ week: string; theft: number; harassment: number; traffic: number }>;
+  const publicLocalitySafety = (usePublicLocalitySafety().data ?? []) as Array<{ locality: string; score: number; trend: "up"|"down"|"flat" }>;
   return (
     <div className="space-y-6">
       <div>
@@ -39,7 +41,7 @@ function TrendsPage() {
       <Card>
         <CardHeader><CardTitle>By locality</CardTitle></CardHeader>
         <CardContent className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          {publicLocalitySafety.map((l) => {
+          {publicLocalitySafety.map((l: any) => {
             const Trend = l.trend === "up" ? TrendingUp : l.trend === "down" ? TrendingDown : Minus;
             const color = l.trend === "up" ? "text-success" : l.trend === "down" ? "text-destructive" : "text-muted-foreground";
             return (

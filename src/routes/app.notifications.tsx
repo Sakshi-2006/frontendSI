@@ -3,8 +3,8 @@ import { PageHeader } from "@/components/page-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { notifications } from "@/lib/mock-data";
-import { AlertCircle, Info, CheckCircle2 } from "lucide-react";
+import { useNotifications, useMarkAllRead } from "@/hooks/use-app-data";
+import { AlertCircle, Info, CheckCircle2, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/notifications")({
@@ -18,19 +18,36 @@ const kindMap = {
 } as const;
 
 function NotificationsPage() {
+  const { data, isLoading } = useNotifications();
+  const notifications = (data ?? []) as Array<{
+    id: string | number; title: string; body: string; time: string; read: boolean; kind: keyof typeof kindMap;
+  }>;
+  const markAll = useMarkAllRead();
+
   return (
     <div className="mx-auto max-w-[900px] space-y-6">
       <PageHeader
         title="Notifications"
         subtitle="System, prediction, and alert notifications in one place."
-        actions={<Button size="sm" variant="outline">Mark all as read</Button>}
+        actions={
+          <Button size="sm" variant="outline" onClick={() => markAll.mutate()} disabled={markAll.isPending}>
+            Mark all as read
+          </Button>
+        }
       />
 
       <Card>
         <CardContent className="p-0">
+          {isLoading && !notifications.length ? (
+            <div className="flex items-center justify-center p-10 text-muted-foreground">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Loading…
+            </div>
+          ) : notifications.length === 0 ? (
+            <div className="p-10 text-center text-sm text-muted-foreground">You're all caught up.</div>
+          ) : (
           <div className="divide-y divide-border">
             {notifications.map((n) => {
-              const k = kindMap[n.kind];
+              const k = kindMap[n.kind] ?? kindMap.info;
               const Icon = k.icon;
               return (
                 <div key={n.id} className={cn("flex items-start gap-3 p-4", !n.read && "bg-muted/30")}>
@@ -49,6 +66,7 @@ function NotificationsPage() {
               );
             })}
           </div>
+          )}
         </CardContent>
       </Card>
     </div>

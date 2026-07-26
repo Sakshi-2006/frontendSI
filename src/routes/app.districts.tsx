@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { districts, crimeByType, crimeTrend } from "@/lib/mock-data";
+import { useDistricts } from "@/hooks/use-app-data";
+import { useCrimeByType, useCrimeTrend } from "@/hooks/use-dashboard";
 import { useState } from "react";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { cn } from "@/lib/utils";
@@ -15,9 +16,16 @@ export const Route = createFileRoute("/app/districts")({
 const C = ["#1f2a55", "#2aa7b8", "#7c8ba8", "#e08c3b", "#3aa872"];
 const tt = { backgroundColor: "var(--popover)", border: "1px solid var(--border)", borderRadius: 10, fontSize: 12 };
 
+type District = { id: string; name: string; risk: number; crimes: number; population: number; officers: number };
+
 function DistrictsPage() {
-  const [selected, setSelected] = useState(districts[0].id);
-  const d = districts.find((x) => x.id === selected)!;
+  const districts = (useDistricts().data ?? []) as District[];
+  const crimeByType = (useCrimeByType().data ?? []) as Array<{ type: string; value: number }>;
+  const crimeTrend = (useCrimeTrend().data ?? []) as Array<{ month: string; crimes: number; solved: number }>;
+  const [selected, setSelected] = useState<string | null>(null);
+  const currentId = selected ?? districts[0]?.id ?? null;
+  const d = districts.find((x) => x.id === currentId);
+  if (!d) return <div className="p-8 text-sm text-muted-foreground">Loading districts…</div>;
 
   return (
     <div className="mx-auto max-w-[1600px] space-y-6">
@@ -34,14 +42,14 @@ function DistrictsPage() {
                     onClick={() => setSelected(x.id)}
                     className={cn(
                       "w-full rounded-lg px-3 py-2.5 text-left transition",
-                      selected === x.id ? "bg-primary text-primary-foreground shadow-sm" : "hover:bg-muted"
+                      currentId === x.id ? "bg-primary text-primary-foreground shadow-sm" : "hover:bg-muted"
                     )}
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{x.name}</span>
-                      <RiskChip risk={x.risk} inverted={selected === x.id} />
+                      <RiskChip risk={x.risk} inverted={currentId === x.id} />
                     </div>
-                    <div className={cn("mt-0.5 text-xs", selected === x.id ? "text-primary-foreground/70" : "text-muted-foreground")}>
+                    <div className={cn("mt-0.5 text-xs", currentId === x.id ? "text-primary-foreground/70" : "text-muted-foreground")}>
                       {x.crimes.toLocaleString()} crimes
                     </div>
                   </button>

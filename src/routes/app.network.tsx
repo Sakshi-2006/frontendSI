@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { networkNodes, networkEdges } from "@/lib/mock-data";
+import { useNetwork } from "@/hooks/use-app-data";
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search, ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
@@ -20,7 +20,13 @@ const KIND_COLORS: Record<string, string> = {
   associate: "#3aa872",
 };
 
+type NetNode = { id: string; label: string; kind: keyof typeof KIND_COLORS };
+type NetEdge = [string, string];
+
 function NetworkPage() {
+  const net = (useNetwork().data ?? { nodes: [], edges: [] }) as { nodes: NetNode[]; edges: NetEdge[] };
+  const networkNodes = net.nodes;
+  const networkEdges = net.edges;
   const [query, setQuery] = useState("");
   const [zoom, setZoom] = useState(1);
   const [selected, setSelected] = useState<string | null>(null);
@@ -30,24 +36,24 @@ function NetworkPage() {
     const R = 220;
     const cx = 400, cy = 300;
     const map = new Map<string, { x: number; y: number }>();
-    networkNodes.forEach((n, i) => {
-      const a = (i / networkNodes.length) * Math.PI * 2 - Math.PI / 2;
+    networkNodes.forEach((n: NetNode, i: number) => {
+      const a = (i / Math.max(networkNodes.length, 1)) * Math.PI * 2 - Math.PI / 2;
       map.set(n.id, { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) });
     });
     return map;
-  }, []);
+  }, [networkNodes]);
 
   const highlighted = useMemo(() => {
     if (!selected) return new Set<string>();
     const set = new Set<string>([selected]);
-    networkEdges.forEach(([a, b]) => {
+    networkEdges.forEach(([a, b]: NetEdge) => {
       if (a === selected) set.add(b);
       if (b === selected) set.add(a);
     });
     return set;
-  }, [selected]);
+  }, [selected, networkEdges]);
 
-  const filteredNodes = networkNodes.filter((n) =>
+  const filteredNodes = networkNodes.filter((n: NetNode) =>
     n.label.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -72,7 +78,7 @@ function NetworkPage() {
             <div className="relative h-[560px] w-full overflow-hidden rounded-b-xl bg-gradient-to-br from-muted/40 to-background">
               <svg viewBox="0 0 800 600" className="h-full w-full" style={{ transform: `scale(${zoom})`, transformOrigin: "center" }}>
                 {/* Edges */}
-                {networkEdges.map(([a, b], i) => {
+                {networkEdges.map(([a, b]: NetEdge, i: number) => {
                   const pa = positions.get(a)!;
                   const pb = positions.get(b)!;
                   const dim = selected && !(highlighted.has(a) && highlighted.has(b));
@@ -82,7 +88,7 @@ function NetworkPage() {
                   );
                 })}
                 {/* Nodes */}
-                {networkNodes.map((n) => {
+                {networkNodes.map((n: NetNode) => {
                   const p = positions.get(n.id)!;
                   const dim = selected && !highlighted.has(n.id);
                   return (
@@ -112,7 +118,7 @@ function NetworkPage() {
                 <Input placeholder="Search…" value={query} onChange={(e) => setQuery(e.target.value)} className="pl-9" />
               </div>
               <ul className="mt-3 max-h-64 space-y-1 overflow-auto">
-                {filteredNodes.map((n) => (
+                {filteredNodes.map((n: NetNode) => (
                   <li key={n.id}>
                     <button onClick={() => setSelected(n.id)}
                       className={`w-full rounded-md px-2.5 py-1.5 text-left text-sm hover:bg-muted ${selected === n.id ? "bg-muted" : ""}`}>
@@ -141,7 +147,7 @@ function NetworkPage() {
             <Card>
               <CardHeader><CardTitle className="text-sm">Selected node</CardTitle></CardHeader>
               <CardContent className="text-sm space-y-2">
-                <div className="font-semibold">{networkNodes.find((n) => n.id === selected)?.label}</div>
+                <div className="font-semibold">{networkNodes.find((n: NetNode) => n.id === selected)?.label}</div>
                 <div className="text-xs text-muted-foreground">
                   {highlighted.size - 1} direct connections
                 </div>

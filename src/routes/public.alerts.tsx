@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { publicSafetyAlerts } from "@/lib/mock-data";
+import { usePublicAlerts } from "@/hooks/use-app-data";
 import { Bell, AlertTriangle, Info } from "lucide-react";
 
 export const Route = createFileRoute("/public/alerts")({
@@ -9,6 +9,7 @@ export const Route = createFileRoute("/public/alerts")({
 });
 
 function AlertsPage() {
+  const publicSafetyAlerts = (usePublicAlerts().data ?? []) as Array<{ id: string; title: string; area: string; time: string; level: "warning" | "info" }>;
   return (
     <div className="space-y-6">
       <div>

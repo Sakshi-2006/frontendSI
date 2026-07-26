@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup, Circle } from "react-leaflet";
-import { heatmapPoints, BENGALURU_CENTER } from "@/lib/mock-data";
+import { BENGALURU_CENTER, heatmapPoints as FALLBACK_POINTS } from "@/lib/mock-data";
+import { useHeatmap } from "@/hooks/use-app-data";
 import { useEffect } from "react";
 import L from "leaflet";
 
@@ -25,6 +26,12 @@ export default function CrimeMap({
     const t = setTimeout(() => window.dispatchEvent(new Event("resize")), 200);
     return () => clearTimeout(t);
   }, []);
+
+  const remote = useHeatmap().data as any[] | undefined;
+  const heatmapPoints: Array<[number, number, number]> = (Array.isArray(remote) && remote.length
+    ? remote.map((p: any) => Array.isArray(p) ? p as [number, number, number] : [p.lat, p.lng, p.weight ?? 0.5])
+    : FALLBACK_POINTS) as Array<[number, number, number]>;
+
 
   return (
     <MapContainer

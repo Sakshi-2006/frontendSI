@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { safetyTips } from "@/lib/mock-data";
+import { useSafetyTips } from "@/hooks/use-app-data";
 import { HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/public/safety")({
@@ -8,6 +8,7 @@ export const Route = createFileRoute("/public/safety")({
 });
 
 function SafetyPage() {
+  const safetyTips = (useSafetyTips().data ?? []) as Array<{ title: string; body: string }>;
   return (
     <div className="space-y-6">
       <div>
