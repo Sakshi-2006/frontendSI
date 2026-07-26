@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { networkNodes, networkEdges } from "@/lib/mock-data";
+import { useNetwork } from "@/hooks/use-app-data";
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search, ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
