@@ -9,6 +9,7 @@ export const Route = createFileRoute("/public/alerts")({
 });
 
 function AlertsPage() {
+  const publicSafetyAlerts = (usePublicAlerts().data ?? []) as Array<{ id: string; title: string; area: string; time: string; level: "warning" | "info" }>;
   return (
     <div className="space-y-6">
       <div>
