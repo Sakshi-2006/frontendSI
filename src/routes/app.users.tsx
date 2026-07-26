@@ -57,12 +57,18 @@ function UsersPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {users.map((u) => (
+              {isLoading && !users.length ? (
+                <TableRow><TableCell colSpan={6}>
+                  <div className="flex items-center justify-center py-8 text-muted-foreground"><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Loading users…</div>
+                </TableCell></TableRow>
+              ) : users.length === 0 ? (
+                <TableRow><TableCell colSpan={6} className="p-10 text-center text-sm text-muted-foreground">No users found.</TableCell></TableRow>
+              ) : users.map((u) => (
                 <TableRow key={u.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar className="h-8 w-8"><AvatarFallback className="bg-primary text-primary-foreground text-xs">
-                        {u.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                        {u.name.split(" ").map((n: string) => n[0]).slice(0, 2).join("")}
                       </AvatarFallback></Avatar>
                       <span className="font-medium">{u.name}</span>
                     </div>
