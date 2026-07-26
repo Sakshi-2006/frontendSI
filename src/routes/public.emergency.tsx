@@ -8,6 +8,7 @@ export const Route = createFileRoute("/public/emergency")({
 });
 
 function EmergencyPage() {
+  const emergencyContacts = (useEmergencyContacts().data ?? []) as Array<{ name: string; desc: string; number: string }>;
   return (
     <div className="space-y-6">
       <div>
