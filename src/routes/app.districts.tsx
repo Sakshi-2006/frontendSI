@@ -42,14 +42,14 @@ function DistrictsPage() {
                     onClick={() => setSelected(x.id)}
                     className={cn(
                       "w-full rounded-lg px-3 py-2.5 text-left transition",
-                      selected === x.id ? "bg-primary text-primary-foreground shadow-sm" : "hover:bg-muted"
+                      currentId === x.id ? "bg-primary text-primary-foreground shadow-sm" : "hover:bg-muted"
                     )}
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{x.name}</span>
-                      <RiskChip risk={x.risk} inverted={selected === x.id} />
+                      <RiskChip risk={x.risk} inverted={currentId === x.id} />
                     </div>
-                    <div className={cn("mt-0.5 text-xs", selected === x.id ? "text-primary-foreground/70" : "text-muted-foreground")}>
+                    <div className={cn("mt-0.5 text-xs", currentId === x.id ? "text-primary-foreground/70" : "text-muted-foreground")}>
                       {x.crimes.toLocaleString()} crimes
                     </div>
                   </button>
