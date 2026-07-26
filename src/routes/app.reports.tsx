@@ -49,6 +49,13 @@ function ReportsPage() {
 
       <Card>
         <CardContent className="p-0">
+          {isLoading && !reportsList.length ? (
+            <div className="flex items-center justify-center p-10 text-muted-foreground">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Loading reports…
+            </div>
+          ) : reportsList.length === 0 ? (
+            <div className="p-10 text-center text-sm text-muted-foreground">No reports available yet.</div>
+          ) : (
           <div className="divide-y divide-border">
             {reportsList.map((r) => (
               <div key={r.id} className="flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between">
@@ -65,11 +72,16 @@ function ReportsPage() {
                 </div>
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline">Preview</Button>
-                  <Button size="sm"><Download className="mr-2 h-4 w-4" /> Download PDF</Button>
+                  <Button size="sm" asChild>
+                    <a href={reportService.downloadUrl(r.id)} target="_blank" rel="noreferrer">
+                      <Download className="mr-2 h-4 w-4" /> Download PDF
+                    </a>
+                  </Button>
                 </div>
               </div>
             ))}
           </div>
+          )}
         </CardContent>
       </Card>
     </div>
