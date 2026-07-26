@@ -109,7 +109,7 @@ function AlertRow({ a, onDispatch }: { a: Alert; onDispatch: () => void }) {
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm">Details</Button>
-          <Button size="sm">Dispatch</Button>
+          <Button size="sm" onClick={onDispatch}>Dispatch</Button>
         </div>
       </CardContent>
     </Card>
