@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup, Circle } from "react-leaflet";
-import { heatmapPoints, BENGALURU_CENTER } from "@/lib/mock-data";
+import { BENGALURU_CENTER, heatmapPoints as FALLBACK_POINTS } from "@/lib/mock-data";
+import { useHeatmap } from "@/hooks/use-app-data";
 import { useEffect } from "react";
 import L from "leaflet";
 
