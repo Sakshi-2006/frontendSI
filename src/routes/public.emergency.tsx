@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent } from "@/components/ui/card";
-import { emergencyContacts } from "@/lib/mock-data";
+import { useEmergencyContacts } from "@/hooks/use-app-data";
 import { Phone } from "lucide-react";
 
 export const Route = createFileRoute("/public/emergency")({
