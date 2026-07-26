@@ -1,141 +1,99 @@
 # SentinelIQ Frontend
 
-SentinelIQ is an AI-powered Crime Analytics and Predictive Policing Platform developed as part of the Karnataka State Police (KSP) Datathon.
+## React-Based Crime Analytics Dashboard
 
-This repository contains the frontend of the application. It provides an interactive dashboard for visualizing crime data, monitoring trends, identifying crime hotspots, and displaying AI-generated insights that assist law enforcement in making informed decisions.
+This repository contains the frontend for SentinelIQ, an AI-powered crime analytics and predictive policing platform developed for the KSP Datathon 2026.
 
-The interface has been designed with a focus on usability, responsiveness, and data visualization while keeping the application scalable for future backend and AI integrations.
+The application provides an interactive interface for crime visualization, hotspot analysis, district-wise insights, predictive analytics, user management, and intelligent decision support.
 
 ---
 
 ## Features
 
-- Interactive dashboard with crime statistics
-- Crime hotspot visualization
-- District-wise crime analytics
-- Crime trend analysis
-- AI prediction interface
-- Patrol planning dashboard
-- Crime records management
-- Search and filtering
-- Reports and analytics
-- Responsive design for desktop and mobile devices
+- Interactive Dashboard
+- Crime Analytics
+- Crime Hotspot Map
+- District-wise Analysis
+- AI Prediction Interface
+- Network Intelligence
+- Smart Patrol Planning
+- Report Management
+- User Management
+- Notifications
+- Role-based Authentication
+- Responsive Design
 
 ---
 
-## Tech Stack
+## Technology Stack
 
-Frontend Framework
 - React.js
-
-Styling
+- TypeScript
 - Tailwind CSS
 - Bootstrap
-
-Visualization
-- Chart.js
-- Leaflet Maps
-
-Routing
-- TanStack Router
-
-Build Tool
+- React Query
+- Axios
+- Leaflet
 - Vite
 
 ---
 
 ## Project Structure
 
-```
-src/
+```text
+frontendSI_new
 │
-├── components/
-├── hooks/
-├── lib/
-├── routes/
-├── services/
-├── styles/
-└── assets/
-
-public/
+├── src/
+├── public/
+├── package.json
+├── vite.config.ts
+└── README.md
 ```
 
 ---
 
-## Getting Started
+## Installation
 
-Clone the repository
-
-```bash
-git clone https://github.com/Sakshi-2006/crime-vision-dash.git
-```
-
-Move into the project directory
+Clone the repository.
 
 ```bash
-cd crime-vision-dash
+git clone https://github.com/Sakshi-2006/frontendSI_new.git
 ```
 
-Install dependencies
+Install dependencies.
 
 ```bash
 npm install
 ```
 
-Run the development server
+Create a `.env` file.
+
+```env
+VITE_API_URL=http://localhost:5000/api/v1
+```
+
+Run the development server.
 
 ```bash
 npm run dev
 ```
 
-Open your browser and visit
+---
 
-```
-http://localhost:5173
-```
+## Backend Repository
+
+https://github.com/799PARIDHISHARMA/ParidhiSharma-sentineliq-backend
 
 ---
 
-## Dataset
+## Live Demo
 
-The frontend has been designed to work with the official Karnataka State Police Datathon dataset.
-
-Dataset Repository
-
-https://github.com/thecoderSky/crime-analytics-datathon
-
-Currently, mock data following the official dataset schema is used where backend APIs are not yet connected.
-
----
-
-## Current Status
-
-The frontend is functional and includes all major interface components required for the project.
-
-Backend APIs and machine learning services are being integrated to provide real-time crime predictions, hotspot analysis, and intelligent recommendations.
-
----
-
-## Future Improvements
-
-- Live backend integration
-- Real-time crime alerts
-- AI-generated predictive insights
-- Route optimization for patrol units
-- Advanced filtering and reporting
-- User authentication and role management
-- Mobile application support
-
----
-
-## Team
-
-Namma Sentinel
-
-Developed for the Karnataka State Police Datathon.
+https://frontend-si-new.vercel.app/
 
 ---
 
 ## License
 
-This project is intended for academic and hackathon purposes.
+Developed for the **KSP Datathon 2026**.
+
+For educational and demonstration purposes.
