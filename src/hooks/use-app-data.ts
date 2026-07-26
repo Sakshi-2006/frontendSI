@@ -161,10 +161,10 @@ export function useNetwork() {
     queryFn: withFallback(async () => {
       const [nodes, edges] = await Promise.all([networkService.nodes(), networkService.edges()]);
       return {
-        nodes: Array.isArray(nodes) && nodes.length ? nodes : (MOCK_NODES as any[]),
-        edges: Array.isArray(edges) && edges.length ? edges : (MOCK_EDGES as any[]),
+        nodes: Array.isArray(nodes) && nodes.length ? nodes : ([...MOCK_NODES] as any[]),
+        edges: Array.isArray(edges) && edges.length ? edges : ([...MOCK_EDGES] as any[]),
       };
-    }, { nodes: MOCK_NODES as any[], edges: MOCK_EDGES as any[] }),
+    }, { nodes: [...MOCK_NODES] as any[], edges: [...MOCK_EDGES] as any[] }),
     staleTime: STALE,
   });
 }
