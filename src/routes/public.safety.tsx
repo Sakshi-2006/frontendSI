@@ -8,6 +8,7 @@ export const Route = createFileRoute("/public/safety")({
 });
 
 function SafetyPage() {
+  const safetyTips = (useSafetyTips().data ?? []) as Array<{ title: string; body: string }>;
   return (
     <div className="space-y-6">
       <div>
